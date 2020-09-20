@@ -8,7 +8,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -136,7 +135,7 @@ class MobileAppIntegrationFragment : Fragment(), MobileAppIntegrationView {
             callTrackingSummary = findViewById(R.id.call_tracking_summary)
             callTrackingSummary.isEnabled = hasPhoneStatePermission
 
-            submitForm()
+            submitForm()  // This will at least show an integer
 
             findViewById<AppCompatButton>(R.id.finish).setOnClickListener {
                 (activity as MobileAppIntegrationListener).onIntegrationRegistrationComplete()

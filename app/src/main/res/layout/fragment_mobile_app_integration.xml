@@ -89,6 +89,23 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextAppearance.HomeAssistant.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin"
+                android:text="@string/device_name" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imeOptions="actionDone"
+                android:layout_marginTop="@dimen/activity_margin"
+                android:hint="Please enter the device name"
+                android:id="@+id/device_name"
+                android:lines="1"
+                android:maxLines="1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/TextAppearance.HomeAssistant.Headline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -165,11 +182,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
                 android:text="@string/pref_call_tracking_summary" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/device_name" />
 
             <LinearLayout
                 android:layout_width="match_parent"
