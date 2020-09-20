@@ -8,10 +8,12 @@ import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ViewFlipper
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
@@ -44,6 +46,7 @@ class MobileAppIntegrationFragment : Fragment(), MobileAppIntegrationView {
         private const val LOCATION_REQUEST_CODE = 0
         private const val PHONE_REQUEST_CODE = 1
 
+        var DEVICE_NAME = Build.MODEL ?: "UNKNOWN"
         fun newInstance(): MobileAppIntegrationFragment {
             return MobileAppIntegrationFragment()
         }
@@ -133,6 +136,8 @@ class MobileAppIntegrationFragment : Fragment(), MobileAppIntegrationView {
             callTrackingSummary = findViewById(R.id.call_tracking_summary)
             callTrackingSummary.isEnabled = hasPhoneStatePermission
 
+            submitForm()
+
             findViewById<AppCompatButton>(R.id.finish).setOnClickListener {
                 (activity as MobileAppIntegrationListener).onIntegrationRegistrationComplete()
             }
@@ -153,6 +158,10 @@ class MobileAppIntegrationFragment : Fragment(), MobileAppIntegrationView {
 
             presenter.onRegistrationAttempt(false)
         }
+    }
+
+    private fun View.submitForm() {
+        presenter.onClickOk(findViewById<EditText>(R.id.device_name).text.toString())
     }
 
     override fun deviceRegistered() {

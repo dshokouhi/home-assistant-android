@@ -1,10 +1,10 @@
 package io.homeassistant.companion.android.onboarding.integration
 
-import android.os.Build
 import android.util.Log
 import io.homeassistant.companion.android.BuildConfig
 import io.homeassistant.companion.android.common.data.integration.DeviceRegistration
 import io.homeassistant.companion.android.common.data.integration.IntegrationRepository
+import io.homeassistant.companion.android.onboarding.integration.MobileAppIntegrationFragment.Companion.DEVICE_NAME
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -25,7 +25,7 @@ open class MobileAppIntegrationPresenterBase constructor(
     internal open suspend fun createRegistration(simple: Boolean): DeviceRegistration {
         return DeviceRegistration(
             "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})",
-            Build.MODEL ?: "UNKNOWN"
+            deviceName = DEVICE_NAME
         )
     }
 
@@ -49,6 +49,10 @@ open class MobileAppIntegrationPresenterBase constructor(
             }
             view.deviceRegistered()
         }
+    }
+
+    override fun onClickOk(deviceName: String) {
+        DEVICE_NAME = deviceName
     }
 
     override fun onFinish() {
