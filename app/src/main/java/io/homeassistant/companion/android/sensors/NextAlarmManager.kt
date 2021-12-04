@@ -56,7 +56,7 @@ class NextAlarmManager : SensorManager {
 
         var triggerTime = 0L
         var local = ""
-        var utc = "unavailable"
+        var utc = "None"
         var pendingIntent = ""
 
         val sensorDao = AppDatabase.getInstance(context).sensorDao()
